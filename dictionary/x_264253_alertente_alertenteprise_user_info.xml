@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="AlertEnteprise User Info" max_length="40" name="x_264253_alertente_alertenteprise_user_info" type="collection">
+        <element choice="3" default="Not Provisioned" label="Alert status" max_length="40" name="alert_status" type="choice">
+            <choice>
+                <element label="Not Provisioned" value="Not Provisioned"/>
+                <element label="Provisioned" value="Provisioned"/>
+                <element label="Provisioning Error" value="Provisioning Error"/>
+                <element label="Provisioning InProgress" value="Provisioning InProgress"/>
+                <element label="Terminated" value="Terminated"/>
+            </choice>
+        </element>
+        <element label="Alert user id" max_length="200" name="alert_user_id" type="string"/>
+        <element choice="3" default="Not Required" label="Approval status" max_length="100" name="approval_status" type="choice">
+            <choice>
+                <element label="Approved" value="Approved"/>
+                <element label="Not Required" value="Not Required"/>
+                <element label="Pending Approval" value="Pending Approval"/>
+                <element label="Rejected" value="Rejected"/>
+            </choice>
+        </element>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Offboarding request number" max_length="100" name="offboarding_request_number" type="string"/>
+        <element label="Onboarding request number" max_length="100" name="onboarding_request_number" type="string"/>
+        <element label="Subject person" max_length="32" name="subject_person" reference="sys_user" type="reference"/>
+        <element label="Subject person HR profile" max_length="32" name="subject_person_hr_profile" reference="sn_hr_core_profile" type="reference"/>
+        <index name="index">
+            <element name="subject_person"/>
+        </index>
+        <index name="index2">
+            <element name="subject_person_hr_profile"/>
+        </index>
+    </element>
+</database>

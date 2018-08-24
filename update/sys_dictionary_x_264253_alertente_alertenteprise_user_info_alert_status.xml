@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update>
-    <sys_dictionary action="INSERT_OR_UPDATE" element="alertenterprise_server_url" table="x_264253_alertente_alertenterprise_settings">
+    <sys_dictionary action="INSERT_OR_UPDATE" element="alert_status" table="x_264253_alertente_alertenteprise_user_info">
         <active>true</active>
         <array>false</array>
         <array_denormalized>false</array_denormalized>
@@ -12,13 +12,13 @@
 	return '';  // return the calculated value
 
 })(current);]]></calculation>
-        <choice/>
+        <choice>3</choice>
         <choice_field/>
         <choice_table/>
-        <column_label>AlertEnterprise server URL</column_label>
+        <column_label>Alert status</column_label>
         <comments/>
         <create_roles/>
-        <default_value/>
+        <default_value>Not Provisioned</default_value>
         <defaultsort/>
         <delete_roles/>
         <dependent/>
@@ -28,15 +28,15 @@
         <dynamic_creation_script/>
         <dynamic_default_value/>
         <dynamic_ref_qual/>
-        <element>alertenterprise_server_url</element>
+        <element>alert_status</element>
         <element_reference>false</element_reference>
         <foreign_database/>
         <function_definition/>
         <function_field>false</function_field>
-        <internal_type display_value="String">string</internal_type>
+        <internal_type display_value="Choice">choice</internal_type>
         <mandatory>false</mandatory>
         <max_length>40</max_length>
-        <name>x_264253_alertente_alertenterprise_settings</name>
+        <name>x_264253_alertente_alertenteprise_user_info</name>
         <next_element/>
         <primary>false</primary>
         <read_only>false</read_only>
@@ -53,16 +53,16 @@
         <staged>false</staged>
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2018-08-22 23:11:58</sys_created_on>
-        <sys_id>55a10192dbc02300e760f28239961906</sys_id>
+        <sys_created_on>2018-08-23 22:08:13</sys_created_on>
+        <sys_id>1dacb9eedb402300e760f282399619be</sys_id>
         <sys_mod_count>2</sys_mod_count>
-        <sys_name>AlertEnterprise server URL</sys_name>
+        <sys_name>Alert status</sys_name>
         <sys_package display_value="ALERTENTERPRISEINTEGRATION" source="x_264253_alertente">4741cd1edb802300e760f2823996199d</sys_package>
         <sys_policy/>
         <sys_scope display_value="ALERTENTERPRISEINTEGRATION">4741cd1edb802300e760f2823996199d</sys_scope>
-        <sys_update_name>sys_dictionary_x_264253_alertente_alertenterprise_settings_alertenterprise_server_url</sys_update_name>
+        <sys_update_name>sys_dictionary_x_264253_alertente_alertenteprise_user_info_alert_status</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-08-24 00:28:03</sys_updated_on>
+        <sys_updated_on>2018-08-24 00:25:45</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

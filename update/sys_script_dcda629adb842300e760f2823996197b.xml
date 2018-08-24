@@ -43,7 +43,36 @@
 	var homePhone = current.parent.subject_person.home_phone;
 	var location = current.parent.subject_person.location.name;
 	
-	var subject_person=current.parent.subject_person_hr_profile.employment_start_date;
+	var emp_start_date=current.parent.subject_person_hr_profile.employment_start_date;
+	var emp_end_date=current.parent.subject_person_hr_profile.employment_end_date;
+	var employee_number=current.parent.subject_person_hr_profile.employee_number;
+	var hr_profile_sys_id = current.parent.subject_person_hr_profile.sys_id;
+	var task_sys_id=current.sys_id;
+	
+	var ae_setting = new GlideRecord('x_264253_alertente_alertenterprise_settings');
+	ae_setting.query();
+	var enableWorkflow = false;
+	var ae_user_info = new GlideRecord('x_264253_alertente_alertenteprise_user_info');
+	ae_user_info.initialize();
+	ae_user_info.subject_person = current.parent.subject_person;
+	ae_user_info.subject_person_hr_profile=current.parent.subject_person_hr_profile;
+	
+	while(ae_setting.next()){
+		enableWorkflow = ae_setting.enable_workflow;
+		if(!enableWorkflow){
+			ae_user_info.approval_status="Not Required";
+			ae_user_info.alert_status="Provisioning InProgress";
+			//call AE Web Service
+		}
+		else{
+			ae_user_info.approval_status="Peding Approval";
+			ae_user_info.alert_status="Not Provisioned";
+		}
+		break;
+	}
+	
+	
+	
 	gslog(subject_person);
 
 })(current, previous);]]></script>
@@ -53,7 +82,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>dcda629adb842300e760f2823996197b</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>Call AlertEnterprise Webservice</sys_name>
         <sys_overrides/>
         <sys_package display_value="ALERTENTERPRISEINTEGRATION" source="x_264253_alertente">4741cd1edb802300e760f2823996199d</sys_package>
@@ -61,9 +90,9 @@
         <sys_scope display_value="ALERTENTERPRISEINTEGRATION">4741cd1edb802300e760f2823996199d</sys_scope>
         <sys_update_name>sys_script_dcda629adb842300e760f2823996197b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-08-23 07:13:09</sys_updated_on>
+        <sys_updated_on>2018-08-24 19:54:01</sys_updated_on>
         <template/>
-        <when>async</when>
+        <when>after</when>
     </sys_script>
     <sys_translated_text action="delete_multiple" query="documentkey=dcda629adb842300e760f2823996197b"/>
 </record_update>

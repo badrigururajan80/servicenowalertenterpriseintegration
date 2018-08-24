@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
     <element label="AlertEnterprise Settings" max_length="40" name="x_264253_alertente_alertenterprise_settings" type="collection">
-        <element label="AlertEnterprise Server URL" max_length="40" name="alertenterprise_server_url" type="string"/>
-        <element choice="3" default="No" label="Enable Workflow" max_length="40" name="enable_workflow" type="choice">
+        <element label="AlertEnterprise server URL" max_length="40" name="alertenterprise_server_url" type="string"/>
+        <element choice="3" default="No" label="Enable workflow" max_length="40" name="enable_workflow" type="choice">
             <choice>
                 <element label="No" value="No"/>
                 <element label="Yes" value="Yes"/>
             </choice>
         </element>
         <element display="true" label="Password" max_length="255" name="password" type="password2"/>
-        <element label="User Name" max_length="40" name="user_name" type="string"/>
+        <element label="User name" max_length="40" name="user_name" type="string"/>
     </element>
 </database>
