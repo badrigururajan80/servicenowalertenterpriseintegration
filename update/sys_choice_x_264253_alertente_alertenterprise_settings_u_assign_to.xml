@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="u_assign_to" table="x_264253_alertente_alertenterprise_settings" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_assign_to</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Task assignee group</label>
+            <language>en</language>
+            <name>x_264253_alertente_alertenterprise_settings</name>
+            <sequence/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-08-27 02:48:00</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>a6f95267db002300e760f2823996194c</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-08-27 02:48:10</sys_updated_on>
+            <value>task assignee group</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_assign_to</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>User</label>
+            <language>en</language>
+            <name>x_264253_alertente_alertenterprise_settings</name>
+            <sequence>0</sequence>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-08-25 00:23:54</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>69e563bedb802300e760f28239961945</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-08-25 00:23:54</sys_updated_on>
+            <value>user</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_assign_to</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Group</label>
+            <language>en</language>
+            <name>x_264253_alertente_alertenterprise_settings</name>
+            <sequence>1</sequence>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-08-25 00:23:54</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>a9e563bedb802300e760f28239961946</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-08-25 00:23:54</sys_updated_on>
+            <value>group</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_assign_to</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Task assignee</label>
+            <language>en</language>
+            <name>x_264253_alertente_alertenterprise_settings</name>
+            <sequence>2</sequence>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-08-25 00:23:54</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>29e563bedb802300e760f28239961947</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-08-25 00:23:54</sys_updated_on>
+            <value>task assignee</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>u_assign_to</element>
+            <name>x_264253_alertente_alertenterprise_settings</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-08-25 00:23:54</sys_created_on>
+            <sys_id>65e563bedb802300e760f28239961946</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>u_assign_to</sys_name>
+            <sys_package display_value="ALERTENTERPRISEINTEGRATION" source="x_264253_alertente">4741cd1edb802300e760f2823996199d</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="ALERTENTERPRISEINTEGRATION">4741cd1edb802300e760f2823996199d</sys_scope>
+            <sys_update_name>sys_choice_x_264253_alertente_alertenterprise_settings_u_assign_to</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-08-25 00:23:54</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>

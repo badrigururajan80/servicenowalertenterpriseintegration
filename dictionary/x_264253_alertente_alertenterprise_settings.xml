@@ -10,5 +10,21 @@
         </element>
         <element display="true" label="Password" max_length="255" name="password" type="password2"/>
         <element label="User name" max_length="40" name="user_name" type="string"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Assign to" max_length="40" name="u_assign_to" type="string">
+            <choice>
+                <element label="Task assignee group" value="task assignee group"/>
+                <element label="User" sequence="0" value="user"/>
+                <element label="Group" sequence="1" value="group"/>
+                <element label="Task assignee" sequence="2" value="task assignee"/>
+            </choice>
+        </element>
+        <element label="Assign to group" max_length="32" name="u_assign_to_group" reference="sys_user_group" type="reference"/>
+        <element label="Assign to user" max_length="32" name="u_assign_to_user" reference="sys_user" type="reference"/>
+        <index name="index">
+            <element name="u_assign_to_user"/>
+        </index>
+        <index name="index2">
+            <element name="u_assign_to_group"/>
+        </index>
     </element>
 </database>
