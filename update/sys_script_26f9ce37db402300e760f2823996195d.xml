@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>false</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_264253_alertente_alertenteprise_user_info</collection>
+        <condition>current.approval_status=="Approved" || current.approval_status=="Rejected"||current.alert_status=="Provisioned"</condition>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>On Approve Or Reject of AlertEnterprise </name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+	if(current.approval_status=="Approved"){
+			var userInfoSysId = current.sys_id;
+			var userName = current.subject_person.user_name;
+			var firstName = current.subject_person.first_name;
+			var lastName = current.subject_person.last_name;
+			var gender = current.subject_person.gender;
+			var managerName = current.subject_person.manager.user_name;
+			var title = current.subject_person.title;
+			var department = current.subject_person.department.name;
+			var email = current.subject_person.email;
+			var businessPhone = current.subject_person.phone;
+			var mobilePhone = current.subject_person.mobile_phone;
+			var homePhone = current.subject_person.home_phone;
+			var location = current.subject_person.location.name;
+	
+			var emp_start_date=current.subject_person_hr_profile.employment_start_date;
+			var emp_end_date=current.subject_person_hr_profile.employment_end_date;
+			var employee_number=current.subject_person_hr_profile.employee_number;
+			current.alert_status="Provisioning InProgress";
+			var requestBody = {"userName": userName, "firstName": firstName,
+							  "lastName": lastName, "gender": gender,
+							  "managerName": managerName, "title": title,
+							  "department": department, "email": email,
+							  "businessPhone": businessPhone, "mobilePhone": mobilePhone,
+							  "homePhone": homePhone, "location": location,
+							  "validFrom": emp_start_date,"validTo": emp_end_date,
+							  "empNumber": employee_number};
+		
+			gs.info("Fields are:"+ JSON.stringify(requestBody));
+			//Call AE Webservice
+	}else{
+		var coreHRTaskGR = new GlideRecord('sn_hr_core_task');
+		coreHRTaskGR.addQuery('sys_id',current.alert_task.sys_id);
+		coreHRTaskGR.query();
+		while(coreHRTaskGR.next()){
+			
+			if(current.approval_status=="Rejected")
+				coreHRTaskGR.state=4; //Mark the task as Closed Incomplete
+			else if(current.alert_status=="Provisioned")
+				coreHRTaskGR.state=3; //Mark the task as Closed Complete
+			coreHRTaskGR.update();
+		}
+		
+	}
+
+	// Add your code here
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-08-27 20:17:43</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>26f9ce37db402300e760f2823996195d</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>On Approve Or Reject of AlertEnterprise </sys_name>
+        <sys_overrides/>
+        <sys_package display_value="ALERTENTERPRISEINTEGRATION" source="x_264253_alertente">4741cd1edb802300e760f2823996199d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ALERTENTERPRISEINTEGRATION">4741cd1edb802300e760f2823996199d</sys_scope>
+        <sys_update_name>sys_script_26f9ce37db402300e760f2823996195d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-28 17:57:18</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=26f9ce37db402300e760f2823996195d"/>
+</record_update>

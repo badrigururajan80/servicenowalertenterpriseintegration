@@ -16,7 +16,9 @@
         <condition/>
         <description/>
         <execute_function>false</execute_function>
-        <filter_condition/>
+        <filter_condition table="sn_hr_core_task">short_descriptionSTARTSWITHAssign Physical Badge to Employee^EQ<item endquery="false" field="short_description" goto="false" newquery="false" operator="STARTSWITH" or="false" value="Assign Physical Badge to Employee"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
         <is_rest>false</is_rest>
         <message/>
         <name>Call AlertEnterprise Webservice</name>
@@ -27,25 +29,10 @@
         <rest_service/>
         <rest_service_text/>
         <rest_variables/>
-        <role_conditions>x_264253_alertente.Call AlertEnterprise</role_conditions>
+        <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 
-	var userName = current.parent.subject_person.user_name;
-	var firstName = current.parent.subject_person.first_name;
-	var lastName = current.parent.subject_person.last_name;
-	var gender = current.parent.subject_person.gender;
-	var managerName = current.parent.subject_person.manager.user_name;
-	var title = current.parent.subject_person.title;
-	var department = current.parent.subject_person.department.name;
-	var email = current.parent.subject_person.email;
-	var businessPhone = current.parent.subject_person.phone;
-	var mobilePhone = current.parent.subject_person.mobile_phone;
-	var homePhone = current.parent.subject_person.home_phone;
-	var location = current.parent.subject_person.location.name;
 	
-	var emp_start_date=current.parent.subject_person_hr_profile.employment_start_date;
-	var emp_end_date=current.parent.subject_person_hr_profile.employment_end_date;
-	var employee_number=current.parent.subject_person_hr_profile.employee_number;
 	var hr_profile_sys_id = current.parent.subject_person_hr_profile.sys_id;
 	var task_sys_id=current.sys_id;
 	
@@ -56,33 +43,67 @@
 	ae_user_info.initialize();
 	ae_user_info.subject_person = current.parent.subject_person;
 	ae_user_info.subject_person_hr_profile=current.parent.subject_person_hr_profile;
+	ae_user_info.alert_task=task_sys_id;
 	
 	while(ae_setting.next()){
 		enableWorkflow = ae_setting.enable_workflow;
 		if(!enableWorkflow){
 			ae_user_info.approval_status="Not Required";
 			ae_user_info.alert_status="Provisioning InProgress";
+			var userInfoSysId = ae_user_info.insert();
+			var userName = current.parent.subject_person.user_name;
+			var firstName = current.parent.subject_person.first_name;
+			var lastName = current.parent.subject_person.last_name;
+			var gender = current.parent.subject_person.gender;
+			var managerName = current.parent.subject_person.manager.user_name;
+			var title = current.parent.subject_person.title;
+			var department = current.parent.subject_person.department.name;
+			var email = current.parent.subject_person.email;
+			var businessPhone = current.parent.subject_person.phone;
+			var mobilePhone = current.parent.subject_person.mobile_phone;
+			var homePhone = current.parent.subject_person.home_phone;
+			var location = current.parent.subject_person.location.name;
+	
+			var emp_start_date=current.parent.subject_person_hr_profile.employment_start_date;
+			var emp_end_date=current.parent.subject_person_hr_profile.employment_end_date;
+			var employee_number=current.parent.subject_person_hr_profile.employee_number;
+			
+			var requestBody = {"userName": userName, "firstName": firstName,
+							  "lastName": lastName, "gender": gender,
+							  "managerName": managerName, "title": title,
+							  "department": department, "email": email,
+							  "businessPhone": businessPhone, "mobilePhone": mobilePhone,
+							  "homePhone": homePhone, "location": location,
+							  "validFrom": emp_start_date,"validTo": emp_end_date,
+							  "empNumber": employee_number};
+		
+			gs.log("Fields are:"+ JSON.stringify(requestBody));
+			
 			
 			//call AE Web Service
 		}
 		else{
-			ae_user_info.approval_status="Peding Approval";
+			ae_user_info.approval_status="Pending Approval";
 			ae_user_info.alert_status="Not Provisioned";
 			if(ae_setting.u_assign_to=="task assignee"){
-				ae_user_info.assign_to_user = current.assign_to_user;
+				ae_user_info.assign_to_user = current.assigned_to;
+			}
+			if(ae_setting.u_assign_to=="task assignee group"){
+				ae_user_info.assign_to_group = current.assignment_group;
 			}
 			else  if (ae_setting.u_assign_to=="user"){
 				ae_user_info.assign_to_user = ae_setting.u_assign_to_user;
 			} else if (ae_setting.u_assign_to=="group"){
 				ae_user_info.assign_to_group = ae_setting.u_assign_to_group;
 			}
+			ae_user_info.insert();
 		}
 		break;
 	}
 	
 	
 	
-	gslog(subject_person);
+	
 
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
@@ -91,7 +112,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>dcda629adb842300e760f2823996197b</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>21</sys_mod_count>
         <sys_name>Call AlertEnterprise Webservice</sys_name>
         <sys_overrides/>
         <sys_package display_value="ALERTENTERPRISEINTEGRATION" source="x_264253_alertente">4741cd1edb802300e760f2823996199d</sys_package>
@@ -99,7 +120,7 @@
         <sys_scope display_value="ALERTENTERPRISEINTEGRATION">4741cd1edb802300e760f2823996199d</sys_scope>
         <sys_update_name>sys_script_dcda629adb842300e760f2823996197b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-08-25 01:08:56</sys_updated_on>
+        <sys_updated_on>2018-08-28 17:37:46</sys_updated_on>
         <template/>
         <when>after</when>
     </sys_script>

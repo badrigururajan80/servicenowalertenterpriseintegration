@@ -10,6 +10,7 @@
                 <element label="Terminated" value="Terminated"/>
             </choice>
         </element>
+        <element label="Alert task" max_length="32" name="alert_task" reference="sn_hr_core_task" type="reference"/>
         <element label="Alert user id" max_length="200" name="alert_user_id" type="string"/>
         <element choice="3" default="Not Required" label="Approval status" max_length="100" name="approval_status" type="choice">
             <choice>
@@ -27,9 +28,12 @@
         <element label="Subject person" max_length="32" name="subject_person" reference="sys_user" type="reference"/>
         <element label="Subject person HR profile" max_length="32" name="subject_person_hr_profile" reference="sn_hr_core_profile" type="reference"/>
         <index name="index">
-            <element name="subject_person"/>
+            <element name="alert_task"/>
         </index>
         <index name="index2">
+            <element name="subject_person"/>
+        </index>
+        <index name="index3">
             <element name="subject_person_hr_profile"/>
         </index>
     </element>

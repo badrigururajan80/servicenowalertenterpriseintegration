@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="alert_task" label="Alert task" language="en" table="x_264253_alertente_alertenteprise_user_info">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>alert_task</element>
+            <help/>
+            <hint/>
+            <label>Alert task</label>
+            <language>en</language>
+            <name>x_264253_alertente_alertenteprise_user_info</name>
+            <plural>Alert tasks</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-08-27 18:10:29</sys_created_on>
+            <sys_id>053ded77db002300e760f28239961984</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Alert task</sys_name>
+            <sys_package display_value="ALERTENTERPRISEINTEGRATION" source="x_264253_alertente">4741cd1edb802300e760f2823996199d</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="ALERTENTERPRISEINTEGRATION">4741cd1edb802300e760f2823996199d</sys_scope>
+            <sys_update_name>sys_documentation_x_264253_alertente_alertenteprise_user_info_alert_task_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-08-27 18:10:29</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>
