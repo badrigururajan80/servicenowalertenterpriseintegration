@@ -16,7 +16,7 @@
         <condition/>
         <description/>
         <execute_function>false</execute_function>
-        <filter_condition table="sn_hr_core_task">short_descriptionSTARTSWITHAssign Physical Badge to Employee^EQ<item endquery="false" field="short_description" goto="false" newquery="false" operator="STARTSWITH" or="false" value="Assign Physical Badge to Employee"/>
+        <filter_condition table="sn_hr_core_task">short_descriptionSTARTSWITHAlertEnterprise:^EQ<item endquery="false" field="short_description" goto="false" newquery="false" operator="STARTSWITH" or="false" value="AlertEnterprise:"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </filter_condition>
         <is_rest>false</is_rest>
@@ -31,26 +31,60 @@
         <rest_variables/>
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
-
+	var aeSetting = new GlideRecord('x_264253_alertente_alertenterprise_settings');
+	var enableWorkflow = "No";
+	var onboardActivityName="";
+	var offboardActivityName="";
+	var onboardRequestCategory =""; 
+	var offboardRequestCategory = "";
+	aeSetting.query();
+	while(aeSetting.next()){
+		onboardActivityName = aeSetting.onboarding_activity_name;
+		offboardActivityName = aeSetting.offboarding_activity_name;
+		if(current.short_description!=onboardActivityName &&
+		   current.short_description!=offboardActivityName){
+			
+			return;
+		}
+		
+		gs.debug("Activity Name:"+current.short_description);
+		onboardRequestCategory=aeSetting.onboarding_request_category;
+		offboardRequestCategory=aeSetting.offboarding_request_category;		
+		enableWorkflow = aeSetting.enable_workflow;
+		break;
+	}
 	
-	var hr_profile_sys_id = current.parent.subject_person_hr_profile.sys_id;
-	var task_sys_id=current.sys_id;
+	var hrProfileSysId = current.parent.subject_person_hr_profile.sys_id;
 	
-	var ae_setting = new GlideRecord('x_264253_alertente_alertenterprise_settings');
-	ae_setting.query();
-	var enableWorkflow = false;
-	var ae_user_info = new GlideRecord('x_264253_alertente_alertenteprise_user_info');
-	ae_user_info.initialize();
-	ae_user_info.subject_person = current.parent.subject_person;
-	ae_user_info.subject_person_hr_profile=current.parent.subject_person_hr_profile;
-	ae_user_info.alert_task=task_sys_id;
-	
-	while(ae_setting.next()){
-		enableWorkflow = ae_setting.enable_workflow;
-		if(!enableWorkflow){
-			ae_user_info.approval_status="Not Required";
-			ae_user_info.alert_status="Provisioning InProgress";
-			var userInfoSysId = ae_user_info.insert();
+	var taskSysId=current.sys_id;
+	var aeUserInfo = new GlideRecord('x_264253_alertente_alertenteprise_user_info');
+	if(current.short_description==onboardActivityName){
+		
+		aeUserInfo.initialize();
+		aeUserInfo.subject_person = current.parent.subject_person;
+		aeUserInfo.subject_person_hr_profile=current.parent.subject_person_hr_profile;
+		aeUserInfo.alert_task=taskSysId;
+		if(enableWorklfow=="Yes" || enableWorklfow=="onboarding"){
+			aeUserInfo.approval_status="Pending Approval";
+			aeUserInfo.alert_status="Not Provisioned";
+			if(ae_setting.u_assign_to=="task assignee"){
+				aeUserInfo.assign_to_user = current.assigned_to;
+			}
+			if(ae_setting.u_assign_to=="task assignee group"){
+				aeUserInfo.assign_to_group = current.assignment_group;
+			}
+			else  if (ae_setting.u_assign_to=="user"){
+				aeUserInfo.assign_to_user = ae_setting.u_assign_to_user;
+			} else if (ae_setting.u_assign_to=="group"){
+				aeUserInfo.assign_to_group = ae_setting.u_assign_to_group;
+			}
+			aeUserInfo.insert();
+			
+		} else {
+			aeUserInfo.approval_status="Not Required";
+			aeUserInfo.alert_status="Provisioning InProgress";
+			var userInfoSysId = aeUserInfo.insert();
+			gs.info("Userinfo sys Id :"+ userInfoSysId);
 			var userName = current.parent.subject_person.user_name;
 			var firstName = current.parent.subject_person.first_name;
 			var lastName = current.parent.subject_person.last_name;
@@ -64,9 +98,10 @@
 			var homePhone = current.parent.subject_person.home_phone;
 			var location = current.parent.subject_person.location.name;
 	
-			var emp_start_date=current.parent.subject_person_hr_profile.employment_start_date;
-			var emp_end_date=current.parent.subject_person_hr_profile.employment_end_date;
-			var employee_number=current.parent.subject_person_hr_profile.employee_number;
+			var empStartDate=current.parent.subject_person_hr_profile.employment_start_date;
+			var empEndDate=current.parent.subject_person_hr_profile.employment_end_date;
+			var employeeNumber=current.parent.subject_person_hr_profile.employee_number;
+			
 			
 			var requestBody = {"userName": userName, "firstName": firstName,
 							  "lastName": lastName, "gender": gender,
@@ -74,32 +109,59 @@
 							  "department": department, "email": email,
 							  "businessPhone": businessPhone, "mobilePhone": mobilePhone,
 							  "homePhone": homePhone, "location": location,
-							  "validFrom": emp_start_date,"validTo": emp_end_date,
-							  "empNumber": employee_number};
+							  "validFrom": empStartDate,"validTo": empEndDate,
+							  "empNumber": employeeNumber,"userInfoSysId":userInfoSysId,
+							   "hrProfileSysId":hrProfileSysId,
+							   "requestCategory":onboardRequestCategory};
 		
-			gs.log("Fields are:"+ JSON.stringify(requestBody));
+			gs.info("Fields are:"+ requestBody);
 			
+		}
+	} else if(current.short_description==offboardActivityName){
+		
+		var userSysId = current.parent.subject_person.sys_id;
+		aeUserInfo.addQuery('subject_person',userSysId);
+		while(aeUserInfo.next()){
+			aeUserInfo.alert_task=taskSysId;
+			if(enableWorklfow=="Yes" || enableWorklfow=="onboarding"){
+				aeUserInfo.offboard_approval_status="Pending Approval";
+				aeUserInfo.alert_status="Pending Termination";
+				if(ae_setting.u_assign_to=="task assignee"){
+					aeUserInfo.assign_to_user = current.assigned_to;
+				}
+				if(ae_setting.u_assign_to=="task assignee group"){
+					aeUserInfo.assign_to_group = current.assignment_group;
+				}
+				else  if (ae_setting.u_assign_to=="user"){
+					aeUserInfo.assign_to_user = ae_setting.u_assign_to_user;
+				} else if (ae_setting.u_assign_to=="group"){
+					aeUserInfo.assign_to_group = ae_setting.u_assign_to_group;
+				}
+				aeUserInfo.update();
+			} else {
+				aeUserInfo.offboard_approval_status="Not Required";
+				aeUserInfo.alert_status="Termination InProgress";
+				var termRequestBody = {
+					"alertUserId":aeUserInfo.alert_user_id,
+					"requestCategory":offboardRequestCategory
+				};
+				//Call AE API
+				aeUserInfo.update();
+				
+			}
 			
-			//call AE Web Service
-		}
-		else{
-			ae_user_info.approval_status="Pending Approval";
-			ae_user_info.alert_status="Not Provisioned";
-			if(ae_setting.u_assign_to=="task assignee"){
-				ae_user_info.assign_to_user = current.assigned_to;
-			}
-			if(ae_setting.u_assign_to=="task assignee group"){
-				ae_user_info.assign_to_group = current.assignment_group;
-			}
-			else  if (ae_setting.u_assign_to=="user"){
-				ae_user_info.assign_to_user = ae_setting.u_assign_to_user;
-			} else if (ae_setting.u_assign_to=="group"){
-				ae_user_info.assign_to_group = ae_setting.u_assign_to_group;
-			}
-			ae_user_info.insert();
-		}
-		break;
+		} 
+		
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -112,7 +174,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>dcda629adb842300e760f2823996197b</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>28</sys_mod_count>
         <sys_name>Call AlertEnterprise Webservice</sys_name>
         <sys_overrides/>
         <sys_package display_value="ALERTENTERPRISEINTEGRATION" source="x_264253_alertente">4741cd1edb802300e760f2823996199d</sys_package>
@@ -120,7 +182,7 @@
         <sys_scope display_value="ALERTENTERPRISEINTEGRATION">4741cd1edb802300e760f2823996199d</sys_scope>
         <sys_update_name>sys_script_dcda629adb842300e760f2823996197b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-08-28 17:37:46</sys_updated_on>
+        <sys_updated_on>2018-08-30 00:36:27</sys_updated_on>
         <template/>
         <when>after</when>
     </sys_script>

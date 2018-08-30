@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update>
-    <sys_ui_section caption="" section_id="fba30d92dbc02300e760f2823996197f" sys_domain="global" table="x_264253_alertente_alertenterprise_settings" version="3" view="">
+    <sys_ui_section caption="AlertEnterprise Server Settings" section_id="fba30d92dbc02300e760f2823996197f" sys_domain="global" table="x_264253_alertente_alertenterprise_settings" version="3" view="">
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>alertenterprise_server_url</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-08-25 00:23:54</sys_created_on>
-            <sys_id>e9e563bedb802300e760f2823996194d</sys_id>
+            <sys_created_on>2018-08-29 21:28:33</sys_created_on>
+            <sys_id>7dbd64a0db902300e760f282399619d7</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">fba30d92dbc02300e760f2823996197f</sys_ui_section>
+            <sys_ui_section caption="AlertEnterprise Server Settings" display_value="AlertEnterprise Server Settings" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">fba30d92dbc02300e760f2823996197f</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-08-25 00:23:54</sys_updated_on>
+            <sys_updated_on>2018-08-29 21:28:33</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -19,13 +19,13 @@
             <element>user_name</element>
             <position>1</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-08-25 00:23:54</sys_created_on>
-            <sys_id>61e563bedb802300e760f2823996194e</sys_id>
+            <sys_created_on>2018-08-29 21:28:33</sys_created_on>
+            <sys_id>fdbd64a0db902300e760f282399619d7</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">fba30d92dbc02300e760f2823996197f</sys_ui_section>
+            <sys_ui_section caption="AlertEnterprise Server Settings" display_value="AlertEnterprise Server Settings" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">fba30d92dbc02300e760f2823996197f</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-08-25 00:23:54</sys_updated_on>
+            <sys_updated_on>2018-08-29 21:28:33</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -33,74 +33,18 @@
             <element>password</element>
             <position>2</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-08-25 00:23:54</sys_created_on>
-            <sys_id>e1e563bedb802300e760f2823996194e</sys_id>
+            <sys_created_on>2018-08-29 21:28:33</sys_created_on>
+            <sys_id>71bd64a0db902300e760f282399619d8</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">fba30d92dbc02300e760f2823996197f</sys_ui_section>
+            <sys_ui_section caption="AlertEnterprise Server Settings" display_value="AlertEnterprise Server Settings" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">fba30d92dbc02300e760f2823996197f</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-08-25 00:23:54</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>enable_workflow</element>
-            <position>3</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-08-25 00:23:54</sys_created_on>
-            <sys_id>65e563bedb802300e760f2823996194e</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">fba30d92dbc02300e760f2823996197f</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-08-25 00:23:54</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>u_assign_to</element>
-            <position>4</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-08-25 00:23:54</sys_created_on>
-            <sys_id>e5e563bedb802300e760f2823996194e</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">fba30d92dbc02300e760f2823996197f</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-08-25 00:23:54</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>u_assign_to_user</element>
-            <position>5</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-08-25 00:23:54</sys_created_on>
-            <sys_id>69e563bedb802300e760f2823996194e</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">fba30d92dbc02300e760f2823996197f</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-08-25 00:23:54</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>u_assign_to_group</element>
-            <position>6</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-08-25 00:23:54</sys_created_on>
-            <sys_id>e9e563bedb802300e760f2823996194e</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">fba30d92dbc02300e760f2823996197f</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-08-25 00:23:54</sys_updated_on>
+            <sys_updated_on>2018-08-29 21:28:33</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_section action="INSERT_OR_UPDATE">
-            <caption/>
+            <caption>AlertEnterprise Server Settings</caption>
             <header>false</header>
             <name>x_264253_alertente_alertenterprise_settings</name>
             <roles/>
@@ -110,15 +54,15 @@
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_id>fba30d92dbc02300e760f2823996197f</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_name>x_264253_alertente_alertenterprise_settings</sys_name>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_name>AlertEnterprise Server Settings</sys_name>
             <sys_overrides/>
             <sys_package display_value="ALERTENTERPRISEINTEGRATION" source="x_264253_alertente">4741cd1edb802300e760f2823996199d</sys_package>
             <sys_policy/>
             <sys_scope display_value="ALERTENTERPRISEINTEGRATION">4741cd1edb802300e760f2823996199d</sys_scope>
             <sys_update_name>sys_ui_section_fba30d92dbc02300e760f2823996197f</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-08-22 23:18:13</sys_updated_on>
+            <sys_updated_on>2018-08-29 21:28:33</sys_updated_on>
             <sys_user/>
             <title>true</title>
             <view display_value="Default view" name="NULL">Default view</view>

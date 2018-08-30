@@ -4,15 +4,17 @@
         <element choice="3" default="Not Provisioned" label="Alert status" max_length="40" name="alert_status" type="choice">
             <choice>
                 <element label="Not Provisioned" value="Not Provisioned"/>
+                <element label="Pending Termination" value="Pending Termination"/>
                 <element label="Provisioned" value="Provisioned"/>
                 <element label="Provisioning Error" value="Provisioning Error"/>
                 <element label="Provisioning InProgress" value="Provisioning InProgress"/>
                 <element label="Terminated" value="Terminated"/>
+                <element label="Termination InProgress" value="Termination InProgress"/>
             </choice>
         </element>
         <element label="Alert task" max_length="32" name="alert_task" reference="sn_hr_core_task" type="reference"/>
         <element label="Alert user id" max_length="200" name="alert_user_id" type="string"/>
-        <element choice="3" default="Not Required" label="Approval status" max_length="100" name="approval_status" type="choice">
+        <element choice="3" default="Not Required" label="Onboard Approval status" max_length="100" name="approval_status" type="choice">
             <choice>
                 <element label="Approved" value="Approved"/>
                 <element label="Not Required" value="Not Required"/>
@@ -23,7 +25,16 @@
         <element label="Assign to group" max_length="100" name="assign_to_group" reference="sys_user_group" type="reference"/>
         <element label="Assign to user" max_length="100" name="assign_to_user" reference="sys_user" type="reference"/>
         <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Offboarding date" max_length="40" name="offboarding_date" type="glide_date_time"/>
         <element label="Offboarding request number" max_length="100" name="offboarding_request_number" type="string"/>
+        <element choice="1" label="Offboard Approval Status" max_length="40" name="offboard_approval_status" type="choice">
+            <choice>
+                <element label="Approved" value="Approved"/>
+                <element label="Not Required" value="Not Required"/>
+                <element label="Pending Approval" value="Pending Approval"/>
+                <element label="Rejected" value="Rejected"/>
+            </choice>
+        </element>
         <element label="Onboarding request number" max_length="100" name="onboarding_request_number" type="string"/>
         <element label="Subject person" max_length="32" name="subject_person" reference="sys_user" type="reference"/>
         <element label="Subject person HR profile" max_length="32" name="subject_person_hr_profile" reference="sn_hr_core_profile" type="reference"/>

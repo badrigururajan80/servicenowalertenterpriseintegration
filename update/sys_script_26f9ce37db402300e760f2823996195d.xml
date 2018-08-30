@@ -13,13 +13,13 @@
         <change_fields>false</change_fields>
         <client_callable>false</client_callable>
         <collection>x_264253_alertente_alertenteprise_user_info</collection>
-        <condition>current.approval_status=="Approved" || current.approval_status=="Rejected"||current.alert_status=="Provisioned"</condition>
+        <condition>(previous.approval_status!="Approved" &amp;&amp; current.approval_status=="Approved") || (previous.approval_status!="Rejected" &amp;&amp; current.approval_status=="Rejected")||(previous.alert_status!="Provisioned" &amp;&amp; current.alert_status=="Provisioned") </condition>
         <description/>
         <execute_function>false</execute_function>
         <filter_condition/>
         <is_rest>false</is_rest>
         <message/>
-        <name>On Approve Or Reject of AlertEnterprise </name>
+        <name>Approval/Provision of AlertEnterprise </name>
         <order>100</order>
         <priority>100</priority>
         <rest_method/>
@@ -29,8 +29,18 @@
         <rest_variables/>
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
-	if(current.approval_status=="Approved"){
+	if(current.approval_status=="Approved" && previous.approval_status!="Approved"){
+		
+			var aeSetting = new GlideRecord('x_264253_alertente_alertenterprise_settings');		
+			var onboardRequestCategory =""; 
+			
+			aeSetting.query();
+			while(aeSetting.next()){
+				onboardActivityName = aeSetting.onboarding_activity_name;
+				break;
+			}
 			var userInfoSysId = current.sys_id;
+			var hrProfileSysId= current.subject_person_hr_profile.sys_id;
 			var userName = current.subject_person.user_name;
 			var firstName = current.subject_person.first_name;
 			var lastName = current.subject_person.last_name;
@@ -44,9 +54,9 @@
 			var homePhone = current.subject_person.home_phone;
 			var location = current.subject_person.location.name;
 	
-			var emp_start_date=current.subject_person_hr_profile.employment_start_date;
-			var emp_end_date=current.subject_person_hr_profile.employment_end_date;
-			var employee_number=current.subject_person_hr_profile.employee_number;
+			var empStartDate=current.subject_person_hr_profile.employment_start_date;
+			var empEndDate=current.subject_person_hr_profile.employment_end_date;
+			var employeeNumber=current.subject_person_hr_profile.employee_number;
 			current.alert_status="Provisioning InProgress";
 			var requestBody = {"userName": userName, "firstName": firstName,
 							  "lastName": lastName, "gender": gender,
@@ -54,10 +64,12 @@
 							  "department": department, "email": email,
 							  "businessPhone": businessPhone, "mobilePhone": mobilePhone,
 							  "homePhone": homePhone, "location": location,
-							  "validFrom": emp_start_date,"validTo": emp_end_date,
-							  "empNumber": employee_number};
+							  "validFrom": empStartDate,"validTo": empEndDate,
+							  "empNumber": employeeNumber,"userInfoSysId":userInfoSysId,
+							   "hrProfileSysId":hrProfileSysId,
+							   "requestCategory":onboardRequestCategory};
 		
-			gs.info("Fields are:"+ JSON.stringify(requestBody));
+			gs.info("Fields are:"+ requestBody);
 			//Call AE Webservice
 	}else{
 		var coreHRTaskGR = new GlideRecord('sn_hr_core_task');
@@ -83,15 +95,15 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>26f9ce37db402300e760f2823996195d</sys_id>
-        <sys_mod_count>8</sys_mod_count>
-        <sys_name>On Approve Or Reject of AlertEnterprise </sys_name>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name>Approval/Provision of AlertEnterprise </sys_name>
         <sys_overrides/>
         <sys_package display_value="ALERTENTERPRISEINTEGRATION" source="x_264253_alertente">4741cd1edb802300e760f2823996199d</sys_package>
         <sys_policy/>
         <sys_scope display_value="ALERTENTERPRISEINTEGRATION">4741cd1edb802300e760f2823996199d</sys_scope>
         <sys_update_name>sys_script_26f9ce37db402300e760f2823996195d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-08-28 17:57:18</sys_updated_on>
+        <sys_updated_on>2018-08-30 00:36:50</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>

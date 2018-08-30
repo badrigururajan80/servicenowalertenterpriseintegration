@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_form_sections form_id="f9bd64a0db902300e760f282399619bc" sys_domain="global" table="x_264253_alertente_alertenterprise_settings" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-08-29 21:28:33</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>7dbd64a0db902300e760f282399619be</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_264253_alertente_alertenterprise_settings" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">f9bd64a0db902300e760f282399619bc</sys_ui_form>
+            <sys_ui_section caption="AlertEnterprise Server Settings" display_value="AlertEnterprise Server Settings" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">fba30d92dbc02300e760f2823996197f</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-08-29 21:28:33</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-08-29 21:28:33</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>79bd64a0db902300e760f282399619bf</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_264253_alertente_alertenterprise_settings" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">f9bd64a0db902300e760f282399619bc</sys_ui_form>
+            <sys_ui_section caption="Workflow Settings" display_value="Workflow Settings" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">b1bd64a0db902300e760f282399619bb</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-08-29 21:28:33</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-08-29 21:28:33</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>71bd64a0db902300e760f282399619c3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_264253_alertente_alertenterprise_settings" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">f9bd64a0db902300e760f282399619bc</sys_ui_form>
+            <sys_ui_section caption="Configuration Settings" display_value="Configuration Settings" name="x_264253_alertente_alertenterprise_settings" sys_domain="global" view="Default view">bdbd64a0db902300e760f282399619bb</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-08-29 21:28:33</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_264253_alertente_alertenterprise_settings</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-08-29 21:28:33</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>f9bd64a0db902300e760f282399619bc</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_264253_alertente_alertenterprise_settings</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="ALERTENTERPRISEINTEGRATION" source="x_264253_alertente">4741cd1edb802300e760f2823996199d</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="ALERTENTERPRISEINTEGRATION">4741cd1edb802300e760f2823996199d</sys_scope>
+            <sys_update_name>sys_ui_form_sections_f9bd64a0db902300e760f282399619bc</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-08-29 21:28:33</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

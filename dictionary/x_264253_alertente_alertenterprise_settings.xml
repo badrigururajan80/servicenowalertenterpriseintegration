@@ -4,10 +4,23 @@
         <element label="AlertEnterprise server URL" max_length="40" name="alertenterprise_server_url" type="string"/>
         <element choice="3" default="No" label="Enable workflow" max_length="40" name="enable_workflow" type="choice">
             <choice>
-                <element label="No" value="No"/>
-                <element label="Yes" value="Yes"/>
+                <element label="No" sequence="0" value="No"/>
+                <element label="Onboarding" sequence="1" value="onboarding"/>
+                <element label="Offboarding (For AlertEnterprise Activity)" sequence="2" value="offboarding"/>
             </choice>
         </element>
+        <element label="Incident template name" max_length="100" name="incident_template_name" type="string"/>
+        <element label="Offboarding activity name" max_length="100" name="offboarding_activity_name" type="string"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Offboarding option" max_length="40" name="offboarding_option" type="string">
+            <choice>
+                <element label="Create Incident" sequence="0" value="create incident"/>
+                <element label="Set Employment End Date" sequence="1" value="set employment end date"/>
+                <element label="Call AlertEnterprise Activity" sequence="2" value="call alertenterprise activity"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="Offboarding request category" max_length="100" name="offboarding_request_category" type="string"/>
+        <element label="Onboarding activity name" max_length="100" name="onboarding_activity_name" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Onboarding request category" max_length="100" name="onboarding_request_category" type="string"/>
         <element display="true" label="Password" max_length="255" name="password" type="password2"/>
         <element label="User name" max_length="40" name="user_name" type="string"/>
         <element attributes="edge_encryption_enabled=true" choice="1" label="Assign to" max_length="40" name="u_assign_to" type="string">

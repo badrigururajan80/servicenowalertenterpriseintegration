@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>false</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_264253_alertente_alertenteprise_user_info</collection>
+        <condition>current.alert_status=="Terminated"  &amp;&amp; previous.alert_status!="Terminated"</condition>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Termination of AlertEnterprise User</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+		var aeSetting = new GlideRecord('x_264253_alertente_alertenterprise_settings');		
+		var offboardActivityName="";
+		var offboardOption="";
+		var incidentTemplateName="";
+		aeSetting.query();
+		while(aeSetting.next()){
+			
+			
+			offboardOption=aeSetting.offboarding_option;
+			if(offboardOption=="create incident")
+				incidentTemplateName=aeSetting.incident_template_name;
+			if(offboardOption=="call alertenterprise activity")
+				offboardActivityName = aeSetting.offboarding_activity_name;
+			
+			
+			
+			break;
+		}
+		
+		if(offboardOption=="create incident"){
+			var templateGR = new GlideRecord('sys_template');
+			templateGR.addQuery("table","incident");
+			templateGR.addQuery("name","AlertEnterprise Incident Template");
+			templateGR.query();
+			while(templateGR._next()){
+				var incidentGR = new GlideRecord('incident');
+				incidentGR.initialize();
+				GlideTemplate.get(templateGR.sys_id).apply(incidentGR);
+				var shortDescription = incidentGR.short_description;
+				shortDescription =
+					shortDescription.replace("&FirstName",current.subject_person.first_name);
+				shortDescription =
+					shortDescription.replace("&LastName",current.subject_person.last_name);
+				shortDescription =
+					shortDescription.replace("&UserName",current.subject_person.user_name);
+				incidentGR.short_description = shortDescription;
+				incidentGR.insert();
+			
+			
+			}
+		}
+		if(offboardOption=="call alertenterprise activity"){
+			var coreHRTaskGR = new GlideRecord('sn_hr_core_task');
+			coreHRTaskGR.addQuery('sys_id',current.alert_task.sys_id);
+			coreHRTaskGR.query();
+			while(coreHRTaskGR.next()){
+				if(coreHRTaskGR.short_description==offboardActivityName){
+					coreHRTaskGR.state=3; //Mark the task as Closed Complete
+					coreHRTaskGR.update();
+				}
+				
+			}
+			
+		}
+		if(offboardOption=="set employment end date" && current.offboarding_date!=null){
+			var coreHRProfileGR = new GlideRecord('sn_hr_core_profile');
+			coreHRProfileGR.addQuery('sys_id',current.subject_person_hr_profile.sys_id);
+			coreHRProfileGR.query();
+			while(coreHRProfileGR.next()){
+				coreHRProfileGR.employment_end_date=current.offboarding_date; 
+				coreHRProfileGR.update();
+			}
+			
+		}
+		
+		
+	
+	
+	   
+	
+	
+		
+	
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-08-28 21:47:09</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>d6d7a308db902300e760f28239961933</sys_id>
+        <sys_mod_count>16</sys_mod_count>
+        <sys_name>Termination of AlertEnterprise User</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="ALERTENTERPRISEINTEGRATION" source="x_264253_alertente">4741cd1edb802300e760f2823996199d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ALERTENTERPRISEINTEGRATION">4741cd1edb802300e760f2823996199d</sys_scope>
+        <sys_update_name>sys_script_d6d7a308db902300e760f28239961933</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-30 00:53:30</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=d6d7a308db902300e760f28239961933"/>
+</record_update>

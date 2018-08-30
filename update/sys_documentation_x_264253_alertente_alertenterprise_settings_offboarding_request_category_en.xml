@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="offboarding_request_category" label="Offboarding request category" language="en" table="x_264253_alertente_alertenterprise_settings">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>offboarding_request_category</element>
+            <help/>
+            <hint/>
+            <label>Offboarding request category</label>
+            <language>en</language>
+            <name>x_264253_alertente_alertenterprise_settings</name>
+            <plural>Offboarding request categories</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-08-29 21:44:10</sys_created_on>
+            <sys_id>6a41b424db902300e760f28239961907</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Offboarding request category</sys_name>
+            <sys_package display_value="ALERTENTERPRISEINTEGRATION" source="x_264253_alertente">4741cd1edb802300e760f2823996199d</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="ALERTENTERPRISEINTEGRATION">4741cd1edb802300e760f2823996199d</sys_scope>
+            <sys_update_name>sys_documentation_x_264253_alertente_alertenterprise_settings_offboarding_request_category_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-08-29 21:44:10</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

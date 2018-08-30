@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_template">
+    <sys_template action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <global>false</global>
+        <group/>
+        <link_element/>
+        <name>AlertEnterprise Incident Template</name>
+        <next/>
+        <next_child/>
+        <roles/>
+        <short_description>Tempalte to create incident on termination of user in AlertEnterprise</short_description>
+        <show_on_template_bar>true</show_on_template_bar>
+        <stand_alone>false</stand_alone>
+        <sys_class_name>sys_template</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-08-29 01:01:21</sys_created_on>
+        <sys_id>00a3585cdbd02300e760f282399619b5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AlertEnterprise Incident Template</sys_name>
+        <sys_package display_value="ALERTENTERPRISEINTEGRATION" source="x_264253_alertente">4741cd1edb802300e760f2823996199d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ALERTENTERPRISEINTEGRATION">4741cd1edb802300e760f2823996199d</sys_scope>
+        <sys_update_name>sys_template_00a3585cdbd02300e760f282399619b5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-29 01:01:21</sys_updated_on>
+        <table>incident</table>
+        <template>active=true^caller_id=442e5a73db802300e760f2823996199a^state=1^impact=1^urgency=1^priority=2^short_description=Terminate the user &amp;FirstName &amp;LastName (&amp;UserName)^contact_type=email^assigned_to=71826bf03710200044e0bfc8bcbe5d3b^EQ</template>
+        <user display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</user>
+        <view/>
+    </sys_template>
+</record_update>
