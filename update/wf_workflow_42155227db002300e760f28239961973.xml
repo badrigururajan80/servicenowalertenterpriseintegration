@@ -35,12 +35,12 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-08-30 00:11:48</sys_created_on>
         <sys_id>0113d564dbd02300e760f282399619ae</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-08-30 00:19:46</sys_updated_on>
+        <sys_updated_on>2018-08-30 18:11:27</sys_updated_on>
         <table>x_264253_alertente_alertenteprise_user_info</table>
         <timezone/>
-        <validated>false</validated>
+        <validated>true</validated>
         <workflow display_value="Approve AlertEnteprise Activity">42155227db002300e760f28239961973</workflow>
     </wf_workflow_version>
     <wf_workflow action="INSERT_OR_UPDATE">

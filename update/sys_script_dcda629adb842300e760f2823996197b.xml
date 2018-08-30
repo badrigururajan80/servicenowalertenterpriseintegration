@@ -21,7 +21,7 @@
         </filter_condition>
         <is_rest>false</is_rest>
         <message/>
-        <name>Call AlertEnterprise Webservice</name>
+        <name>Creation of AlertEnterprise Activity</name>
         <order>100</order>
         <priority>100</priority>
         <rest_method/>
@@ -37,6 +37,9 @@
 	var offboardActivityName="";
 	var onboardRequestCategory =""; 
 	var offboardRequestCategory = "";
+	var assignTo="";
+	var assignToUser="";
+	var assignToGroup="";
 	aeSetting.query();
 	while(aeSetting.next()){
 		onboardActivityName = aeSetting.onboarding_activity_name;
@@ -51,6 +54,18 @@
 		onboardRequestCategory=aeSetting.onboarding_request_category;
 		offboardRequestCategory=aeSetting.offboarding_request_category;		
 		enableWorkflow = aeSetting.enable_workflow;
+		assignTo=aeSetting.u_assign_to;
+		if(assignTo=="task assignee"){
+				assignToUser = current.assigned_to;
+		}
+		if(assignTo=="task assignee group"){
+				assignToGroup = current.assignment_group;
+		}
+		else  if (assignTo=="user"){
+				assignToUser = aeSetting.u_assign_to_user;
+		} else if (assignTo=="group"){
+				assignToGroup = aeSetting.u_assign_to_group;
+		}
 		break;
 	}
 	
@@ -64,20 +79,14 @@
 		aeUserInfo.subject_person = current.parent.subject_person;
 		aeUserInfo.subject_person_hr_profile=current.parent.subject_person_hr_profile;
 		aeUserInfo.alert_task=taskSysId;
-		if(enableWorklfow=="Yes" || enableWorklfow=="onboarding"){
+		if(enableWorkflow=="Yes" || enableWorkflow=="onboarding"){
 			aeUserInfo.approval_status="Pending Approval";
 			aeUserInfo.alert_status="Not Provisioned";
-			if(ae_setting.u_assign_to=="task assignee"){
-				aeUserInfo.assign_to_user = current.assigned_to;
-			}
-			if(ae_setting.u_assign_to=="task assignee group"){
-				aeUserInfo.assign_to_group = current.assignment_group;
-			}
-			else  if (ae_setting.u_assign_to=="user"){
-				aeUserInfo.assign_to_user = ae_setting.u_assign_to_user;
-			} else if (ae_setting.u_assign_to=="group"){
-				aeUserInfo.assign_to_group = ae_setting.u_assign_to_group;
-			}
+			if(assignToUser!="")
+				aeUserInfo.assign_to_user=assignToUser;
+			if(assignToGroup!="")
+				aeUserInfo.assign_to_group=assignToGroup;
+			
 			aeUserInfo.insert();
 			
 		} else {
@@ -123,20 +132,13 @@
 		aeUserInfo.addQuery('subject_person',userSysId);
 		while(aeUserInfo.next()){
 			aeUserInfo.alert_task=taskSysId;
-			if(enableWorklfow=="Yes" || enableWorklfow=="onboarding"){
+			if(enableWorkflow=="Yes" || enableWorkflow=="onboarding"){
 				aeUserInfo.offboard_approval_status="Pending Approval";
 				aeUserInfo.alert_status="Pending Termination";
-				if(ae_setting.u_assign_to=="task assignee"){
-					aeUserInfo.assign_to_user = current.assigned_to;
-				}
-				if(ae_setting.u_assign_to=="task assignee group"){
-					aeUserInfo.assign_to_group = current.assignment_group;
-				}
-				else  if (ae_setting.u_assign_to=="user"){
-					aeUserInfo.assign_to_user = ae_setting.u_assign_to_user;
-				} else if (ae_setting.u_assign_to=="group"){
-					aeUserInfo.assign_to_group = ae_setting.u_assign_to_group;
-				}
+				if(assignToUser!="")
+					aeUserInfo.assign_to_user=assignToUser;
+				if(assignToGroup!="")
+					aeUserInfo.assign_to_group=assignToGroup;
 				aeUserInfo.update();
 			} else {
 				aeUserInfo.offboard_approval_status="Not Required";
@@ -174,15 +176,15 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>dcda629adb842300e760f2823996197b</sys_id>
-        <sys_mod_count>28</sys_mod_count>
-        <sys_name>Call AlertEnterprise Webservice</sys_name>
+        <sys_mod_count>31</sys_mod_count>
+        <sys_name>Creation of AlertEnterprise Activity</sys_name>
         <sys_overrides/>
         <sys_package display_value="ALERTENTERPRISEINTEGRATION" source="x_264253_alertente">4741cd1edb802300e760f2823996199d</sys_package>
         <sys_policy/>
         <sys_scope display_value="ALERTENTERPRISEINTEGRATION">4741cd1edb802300e760f2823996199d</sys_scope>
         <sys_update_name>sys_script_dcda629adb842300e760f2823996197b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-08-30 00:36:27</sys_updated_on>
+        <sys_updated_on>2018-08-30 18:08:59</sys_updated_on>
         <template/>
         <when>after</when>
     </sys_script>
